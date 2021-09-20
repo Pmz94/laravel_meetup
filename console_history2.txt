@@ -1,0 +1,76 @@
+Microsoft Windows [Versión 10.0.15063]
+(c) 2017 Microsoft Corporation. Todos los derechos reservados.
+
+C:\Users\pmz94>cd C:\xampp\htdocs\new_project
+
+C:\xampp\htdocs\new_project>php artisan make:migration create_proyectos_table --create="proyectos"
+Created Migration: 2017_08_25_025407_create_proyectos_table
+
+C:\xampp\htdocs\new_project>php artisan migrate
+Migration table created successfully.
+
+
+  [Illuminate\Database\QueryException]
+  SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes (SQ
+  L: alter table `users` add unique `users_email_unique`(`email`))
+
+
+
+  [PDOException]
+  SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes
+
+
+
+C:\xampp\htdocs\new_project>php artisan migrate
+Migration table created successfully.
+Migrating: 2017_08_25_025407_create_proyectos_table
+Migrated:  2017_08_25_025407_create_proyectos_table
+
+C:\xampp\htdocs\new_project>php artisan make:model Proyecto
+Model created successfully.
+
+C:\xampp\htdocs\new_project>php artisan make:controller ProyectosController --resource
+Controller created successfully.
+
+C:\xampp\htdocs\new_project>php artisan route:list
++--------+-----------+---------------------------+-------------------+--------------------------------------------------+--------------+
+| Domain | Method    | URI                       | Name              | Action                                           | Middleware   |
++--------+-----------+---------------------------+-------------------+--------------------------------------------------+--------------+
+|        | GET|HEAD  | /                         |                   | Closure                                          | web          |
+|        | GET|HEAD  | api/user                  |                   | Closure                                          | api,auth:api |
+|        | GET|HEAD  | demo                      |                   | App\Http\Controllers\ProyectosController@demo    | web          |
+|        | GET|HEAD  | proyectos                 | proyectos.index   | App\Http\Controllers\ProyectosController@index   | web          |
+|        | POST      | proyectos                 | proyectos.store   | App\Http\Controllers\ProyectosController@store   | web          |
+|        | GET|HEAD  | proyectos/create          | proyectos.create  | App\Http\Controllers\ProyectosController@create  | web          |
+|        | GET|HEAD  | proyectos/{proyecto}      | proyectos.show    | App\Http\Controllers\ProyectosController@show    | web          |
+|        | PUT|PATCH | proyectos/{proyecto}      | proyectos.update  | App\Http\Controllers\ProyectosController@update  | web          |
+|        | DELETE    | proyectos/{proyecto}      | proyectos.destroy | App\Http\Controllers\ProyectosController@destroy | web          |
+|        | GET|HEAD  | proyectos/{proyecto}/edit | proyectos.edit    | App\Http\Controllers\ProyectosController@edit    | web          |
++--------+-----------+---------------------------+-------------------+--------------------------------------------------+--------------+
+
+C:\xampp\htdocs\new_project>php artisan tinker
+Psy Shell v0.8.11 (PHP 7.1.7 — cli) by Justin Hileman
+>>> App\Proyecto::find(1)
+=> App\Proyecto {#709
+     id: 1,
+     nombre: "Benny",
+     slug: "proy-1",
+     created_at: "2017-08-24 20:09:26",
+     updated_at: "2017-08-24 20:57:58",
+   }
+>>> App\Proyecto::find(2)
+=> App\Proyecto {#705
+     id: 2,
+     nombre: "Boston",
+     slug: "proy-2",
+     created_at: "2017-08-24 20:09:26",
+     updated_at: "2017-08-24 20:58:06",
+   }
+>>> App\Proyecto::find(3)
+=> App\Proyecto {#712
+     id: 3,
+     nombre: "Bugs",
+     slug: "proy-3",
+     created_at: "2017-08-24 20:41:02",
+     updated_at: "2017-08-24 20:58:12",
+   }
